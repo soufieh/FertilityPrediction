@@ -1,0 +1,1050 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     38207,       1042]
+NotebookOptionsPosition[     33365,        946]
+NotebookOutlinePosition[     33758,        962]
+CellTagsIndexPosition[     33715,        959]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fertility", "=", 
+   RowBox[{
+   "Import", "[", "\"\</Users/hsoufieh/Desktop/fertility.csv\>\"", "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{3.829340949836844*^9},
+ CellLabel->
+  "In[123]:=",ExpressionUUID->"0c550168-dc4c-4bc3-ac5d-358ba46269d2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"H", "[", "seq_", "]"}], " ", ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"events", ",", "probs"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"events", " ", "=", " ", 
+       RowBox[{"Union", "[", "seq", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"probs", " ", "=", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Count", "[", 
+           RowBox[{"seq", ",", "e"}], "]"}], "/", 
+          RowBox[{"Length", "[", "seq", "]"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"e", ",", "events"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Sum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "p"}], " ", 
+          RowBox[{"Log2", "[", "p", "]"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"p", ",", "probs"}], "}"}]}], "]"}], " ", "//", "N"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.829341119926538*^9, 3.829341142490924*^9}},
+ CellLabel->
+  "In[288]:=",ExpressionUUID->"9eb26b1c-e779-4d8b-a576-fff67c534132"],
+
+Cell[CellGroupData[{
+
+Cell["Calculating Mutual Information for Age", "Section",
+ CellChangeTimes->{{3.829341037848118*^9, 3.8293410644801826`*^9}, 
+   3.829341096950396*^9, 
+   3.829341147340301*^9},ExpressionUUID->"f01123b6-aff2-4b61-a3f7-\
+461fae720229"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"AgeHX", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", "2"}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"HY", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", "10"}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"AgeHXY", "=", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"2", ",", "10"}], "}"}]}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"AgeI", " ", "=", 
+  RowBox[{"AgeHX", "+", "HY", "-", "AgeHXY"}]}]}], "Input",
+ CellChangeTimes->{{3.82934114926254*^9, 3.8293412231806498`*^9}, {
+  3.829341312155012*^9, 3.8293413235714693`*^9}, {3.8296543453827677`*^9, 
+  3.8296543487901983`*^9}},
+ CellLabel->
+  "In[330]:=",ExpressionUUID->"e7eb6aee-a404-463c-8da6-980370987291"],
+
+Cell[BoxData["0.11828336484274571`"], "Output",
+ CellChangeTimes->{{3.829341175798201*^9, 3.829341223798771*^9}, 
+   3.829341340439308*^9, 3.8296537489492188`*^9, {3.829654346051202*^9, 
+   3.829654349128941*^9}},
+ CellLabel->
+  "Out[333]=",ExpressionUUID->"128ddeef-4cb0-4234-90b2-99dfc23456ea"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.829341037848118*^9, 3.8293410644801826`*^9}, {
+   3.829341112387473*^9, 3.829341112401205*^9}, 
+   3.8293412377533216`*^9},ExpressionUUID->"8bb6b182-8efc-47c5-b379-\
+97806d6fdb8f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculating Mutual Information for Season", "Section",
+ CellChangeTimes->{{3.829341037848118*^9, 3.8293410644801826`*^9}, {
+  3.829341112387473*^9, 3.829341112401205*^9}, {3.8293412377533216`*^9, 
+  3.8293412657835197`*^9}},ExpressionUUID->"63946951-edcb-4d3b-8693-\
+411dd371b236"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SeasonHX", "=", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", "1"}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SeasonHXY", "=", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "10"}], "}"}]}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"SeasonI", " ", "=", " ", 
+  RowBox[{
+  "SeasonHX", "+", "HY", " ", "-", " ", 
+   "SeasonHXY"}]}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.829341037848118*^9, 3.8293410644801826`*^9}, {
+  3.829341112387473*^9, 3.829341112401205*^9}, {3.8293412377533216`*^9, 
+  3.829341389941517*^9}},
+ CellLabel->
+  "In[293]:=",ExpressionUUID->"87fad39a-ed43-4240-b61a-48466941e1a3"],
+
+Cell[BoxData["0.03208324308960364`"], "Output",
+ CellChangeTimes->{3.8293413914269123`*^9, 3.82965375081203*^9},
+ CellLabel->
+  "Out[295]=",ExpressionUUID->"d1d05bc0-7fd6-4f26-b6f3-0180d0780f16"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+Calculating Mutual Information for Childish diseases\
+\>", "Section",
+ CellChangeTimes->{{3.829341422360198*^9, 
+  3.829341454252904*^9}},ExpressionUUID->"8b774f1e-b120-4341-9735-\
+ff2f7f17da30"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"DiseaseHX", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", "3"}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DiseaseHXY", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"3", ",", "10"}], "}"}]}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"DiseaseI", " ", "=", " ", 
+  RowBox[{"DiseaseHX", "+", "HY", " ", "-", " ", "DiseaseHXY"}]}]}], "Input",
+ CellChangeTimes->{{3.829341422360198*^9, 3.829341515834586*^9}},
+ CellLabel->
+  "In[296]:=",ExpressionUUID->"6e4ffe1d-c893-48f7-a54a-2d2c77761d7a"],
+
+Cell[BoxData["0.001098784414541809`"], "Output",
+ CellChangeTimes->{3.829341516209441*^9, 3.829653752769504*^9},
+ CellLabel->
+  "Out[298]=",ExpressionUUID->"ec5745b0-8035-457e-8777-eb7f0af252ce"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+Calculating Mutual Information for Accident or serious trauma\
+\>", "Section",
+ CellChangeTimes->{{3.829341529014009*^9, 
+  3.829341555869467*^9}},ExpressionUUID->"2bbdf3b6-4bb9-4530-92da-\
+f23a3213f3bd"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"AccidentHX", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", "4"}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"AccidentHXY", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"4", ",", "10"}], "}"}]}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"AccidentI", " ", "=", " ", 
+  RowBox[{"AccidentHX", "+", "HY", " ", "-", " ", "AccidentHXY"}]}]}], "Input",\
+
+ CellChangeTimes->{{3.829341529014009*^9, 3.829341634446599*^9}},
+ CellLabel->
+  "In[299]:=",ExpressionUUID->"3174208d-0187-4b8e-aa5b-47f21df7203e"],
+
+Cell[BoxData["0.01518740406804242`"], "Output",
+ CellChangeTimes->{{3.829341632016981*^9, 3.829341635043511*^9}, 
+   3.8296537538816566`*^9},
+ CellLabel->
+  "Out[301]=",ExpressionUUID->"dd5a873a-4f11-43cd-8f32-a4a9ad24d873"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.829341636644291*^9, 
+  3.829341642103251*^9}},ExpressionUUID->"97b5d6cd-0d12-49b6-9310-\
+3bd8f887470c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculating Mutual Information for Surgical intervention", "Section",
+ CellChangeTimes->{{3.829341636644291*^9, 
+  3.829341657203637*^9}},ExpressionUUID->"9ce238b2-2f61-4b35-91d2-\
+586abbdd1f96"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SurgeryHX", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", "5"}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SurgeryHXY", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"5", ",", "10"}], "}"}]}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"SurgeryI", " ", "=", 
+  RowBox[{"SurgeryHX", "+", "HY", " ", "-", " ", "SurgeryHXY"}]}]}], "Input",
+ CellChangeTimes->{{3.829341636644291*^9, 3.829341698967503*^9}},
+ CellLabel->
+  "In[302]:=",ExpressionUUID->"8317a867-544f-4989-bf53-a2e055c13c49"],
+
+Cell[BoxData["0.0021271909546716206`"], "Output",
+ CellChangeTimes->{3.8293416993683567`*^9, 3.8296537560280647`*^9},
+ CellLabel->
+  "Out[304]=",ExpressionUUID->"da496a0c-9197-4c16-a3e5-04dd550a29da"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+Calculating Mutual Information for High fevers in the last year\
+\>", "Section",
+ CellChangeTimes->{{3.829341709607476*^9, 
+  3.829341733135041*^9}},ExpressionUUID->"9f3d6b79-9b6e-414f-89f2-\
+ef4c0c3ea0fd"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"FeverHX", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", "6"}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FeverHXY", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"6", ",", "10"}], "}"}]}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"FeverI", " ", "=", 
+  RowBox[{"FeverHX", "+", "HY", " ", "-", " ", "FeverHXY"}]}]}], "Input",
+ CellChangeTimes->{{3.829341709607476*^9, 3.8293417658957644`*^9}},
+ CellLabel->
+  "In[305]:=",ExpressionUUID->"de923efe-1184-4a64-89fd-db9adbd53a79"],
+
+Cell[BoxData["0.010698898875758811`"], "Output",
+ CellChangeTimes->{3.829341766562438*^9, 3.8296537571864758`*^9},
+ CellLabel->
+  "Out[307]=",ExpressionUUID->"69a2d204-eaa9-490b-ac20-71f5e4a3a4e9"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+Calculating Mutual Information for Frequency of alcohol consumption\
+\>", "Section",
+ CellChangeTimes->{{3.829341772822482*^9, 
+  3.829341818697055*^9}},ExpressionUUID->"2e81cc76-b0d4-458f-8098-\
+19e92ade4e08"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"AlcoholHX", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", "7"}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"AlcoholHXY", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"7", ",", "10"}], "}"}]}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"AlcoholI", " ", "=", 
+  RowBox[{"AlcoholHX", "+", "HY", " ", "-", " ", "AlcoholHXY"}]}]}], "Input",
+ CellChangeTimes->{{3.829341772822482*^9, 3.829341847938856*^9}},
+ CellLabel->
+  "In[192]:=",ExpressionUUID->"71020f17-b35e-4b82-a931-65209cc82d32"],
+
+Cell[BoxData["0.03217038830326091`"], "Output",
+ CellChangeTimes->{3.829341848307665*^9},
+ CellLabel->
+  "Out[194]=",ExpressionUUID->"7a8834aa-01e8-428c-93b7-fe151160cdb1"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+Calculating Mutual Information for Smoking habit\
+\>", "Section",
+ CellChangeTimes->{{3.829341853871923*^9, 
+  3.829341892204569*^9}},ExpressionUUID->"b4dc22fd-e7bb-4169-a9f1-\
+b154d0659bfe"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.829341853871923*^9, 
+  3.829341896393993*^9}},ExpressionUUID->"28f4e867-1b9f-4e9a-b0fe-\
+2d94cf2819f3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SmokingHX", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", "8"}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SmokingHXY", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"8", ",", "10"}], "}"}]}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"SmokingI", " ", "=", 
+  RowBox[{"SmokingHX", "+", "HY", " ", "-", " ", "SmokingHXY"}]}]}], "Input",
+ CellChangeTimes->{{3.8293419035326223`*^9, 3.829341922768516*^9}},
+ CellLabel->
+  "In[308]:=",ExpressionUUID->"a03d5876-9cbb-4bf8-88da-535516749046"],
+
+Cell[BoxData["0.0015319144694434517`"], "Output",
+ CellChangeTimes->{3.8293419231498003`*^9, 3.8296537594161053`*^9},
+ CellLabel->
+  "Out[310]=",ExpressionUUID->"319b71af-6b3e-4d41-b89d-bbee69cbdd64"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Calculating Mutual Information for Number of hours spent sitting per day\
+\>", "Section",
+ CellChangeTimes->{{3.829341931480255*^9, 
+  3.829341961333783*^9}},ExpressionUUID->"b1cca120-f711-44c2-a36b-\
+fecb2fbb0b8a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SitHX", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", "9"}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SitHXY", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"9", ",", "10"}], "}"}]}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"SitI", " ", "=", 
+  RowBox[{"SitHX", "+", "HY", " ", "-", " ", "SitHXY"}]}]}], "Input",
+ CellChangeTimes->{{3.829341931480255*^9, 3.829341995820108*^9}},
+ CellLabel->
+  "In[312]:=",ExpressionUUID->"7c1d52f1-4a77-4184-9706-4d9f08622bc5"],
+
+Cell[BoxData["0.09369638873507524`"], "Output",
+ CellChangeTimes->{3.829653770761451*^9},
+ CellLabel->
+  "Out[314]=",ExpressionUUID->"c2e42b44-026f-49d8-a2bf-257a018a3b02"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.829653769251499*^9, 
+  3.829653769252205*^9}},ExpressionUUID->"37d5bd94-dc09-4a59-a745-\
+27bc7c2ba6d8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"BarChart", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+    "AgeI", " ", ",", "SeasonI", ",", "DiseaseI", ",", "AccidentI", ",", 
+     "SurgeryI", ",", "FeverI", " ", ",", "AlcoholI", ",", "SmokingI", ",", 
+     "SitI"}], "}"}], ",", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Fertility Attributes\>\"", " ", ",", " ", 
+      "\"\<Mutual Information\>\""}], " ", "}"}]}], ",", 
+   RowBox[{"ChartLabels", "\[Rule]", 
+    RowBox[{"Placed", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Age\>\"", ",", "\"\<Season\>\"", ",", "\"\<Childish diseases\>\"",
+         ",", "\"\<Accident or Serious Trauma\>\"", ",", 
+        "\"\<Surgical intervention\>\"", ",", 
+        "\"\<High fevers in the last year\>\"", ",", 
+        "\"\<Frequency of alcohol consumption\>\"", ",", 
+        "\"\<Smoking habit\>\"", ",", 
+        "\"\<Number of hours spent sitting per day\>\""}], "}"}], ",", "Axis",
+       ",", " ", 
+      RowBox[{
+       RowBox[{"Rotate", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"90", " ", "Degree"}]}], "]"}], "&"}]}], "]"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.829342012358605*^9, 3.82934203026862*^9}, {
+  3.8293427088867283`*^9, 3.82934278972679*^9}, {3.829342822306498*^9, 
+  3.829342937468895*^9}, {3.829343007604271*^9, 3.829343045049485*^9}, {
+  3.829343120822524*^9, 3.829343124001864*^9}, {3.829654599094545*^9, 
+  3.8296546731387777`*^9}, {3.829654759076206*^9, 3.829654783203381*^9}},
+ CellLabel->
+  "In[342]:=",ExpressionUUID->"3fde5669-5a42-4b32-877a-687e973882e7"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Opacity[0], 
+    PointBox[{{0.3707501820830299, 0.}, {9.451201747997086, 0.}}]}, {{}, 
+    {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.637], 
+     Thickness[Small]}], 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.637], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0.5487982520029133, 0.}, {1.4512017479970867`, 
+             0.11828336484274571`}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{45.769607843137265`, 
+            69.17639880135971}, {-146.68198067213612`, -5.41682117386668}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 0.11828336484274571`]& ,
+         TagBoxNote->"0.11828336484274571"],
+        StyleBox["0.11828336484274571`", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0.11828336484274571`, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.637], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{1.5487982520029133`, 0.}, {2.4512017479970867`, 
+             0.03208324308960364}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{71.1538079929673, 
+            94.56059895118977}, {-44.09803825992075, -5.416821173866694}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 0.03208324308960364]& ,
+         TagBoxNote->"0.03208324308960364"],
+        StyleBox["0.03208324308960364`", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0.03208324308960364, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.637], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{2.5487982520029133`, 0.}, {3.4512017479970867`, 
+             0.001098784414541809}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{96.53800814279737, 
+            119.94479910101981`}, {-7.224448527660867, -5.416821173866693}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 0.001098784414541809]& ,
+         TagBoxNote->"0.001098784414541809"],
+        StyleBox["0.001098784414541809`", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0.001098784414541809, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.637], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{3.5487982520029133`, 0.}, {4.451201747997087, 
+             0.01518740406804242}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{121.9222082926274, 
+            145.32899925084985`}, {-23.990853467798107`, -5.416821173866694}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 0.01518740406804242]& ,
+         TagBoxNote->"0.01518740406804242"],
+        StyleBox["0.01518740406804242`", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0.01518740406804242, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.637], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{4.548798252002913, 0.}, {5.451201747997087, 
+             0.0021271909546716206`}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{147.30640844245744`, 
+            170.7131994006799}, {-8.44832147752914, -5.416821173866693}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 0.0021271909546716206`]& ,
+         TagBoxNote->"0.0021271909546716206"],
+        StyleBox["0.0021271909546716206`", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0.0021271909546716206`, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.637], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{5.548798252002913, 0.}, {6.451201747997087, 
+             0.010698898875758811`}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{172.6906085922875, 
+            196.09739955050995`}, {-18.64923040744126, -5.416821173866694}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 0.010698898875758811`]& ,
+         TagBoxNote->"0.010698898875758811"],
+        StyleBox["0.010698898875758811`", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0.010698898875758811`, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.637], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{6.548798252002913, 0.}, {7.451201747997087, 
+             0.03217038830326091}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{198.07480874211754`, 
+            221.48159970033998`}, {-44.20174692526253, -5.416821173866694}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 0.03217038830326091]& ,
+         TagBoxNote->"0.03217038830326091"],
+        StyleBox["0.03217038830326091`", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0.03217038830326091, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.637], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{7.548798252002913, 0.}, {8.451201747997086, 
+             0.0015319144694434517`}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{223.45900889194758`, 
+            246.86579985017002`}, {-7.739902423842983, -5.416821173866693}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 0.0015319144694434517`]& ,
+         TagBoxNote->"0.0015319144694434517"],
+        StyleBox["0.0015319144694434517`", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0.0015319144694434517`, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.637], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{8.548798252002912, 0.}, {9.451201747997086, 
+             0.09369638873507524}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{248.8432090417776, 
+            272.25000000000006`}, {-117.42182546791399`, -5.416821173866694}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 0.09369638873507524]& ,
+         TagBoxNote->"0.09369638873507524"],
+        StyleBox["0.09369638873507524`", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0.09369638873507524, {}], 
+        "Tooltip"]& ]}}, {}, {}}, {}, {}, {}, {}, 
+   StyleBox[
+    StyleBox[{
+      {Thickness[Tiny], 
+       LineBox[{{0.3707501820830299, 0.}, {9.632810779315367, 0.}}], 
+       StyleBox[
+        {Thickness[Tiny], 
+         InsetBox["\<\"Fertility Attributes\"\>", 
+          Offset[{10., 0.}, {9.451201747997086, 0.}], 
+          ImageScaled[{0, Rational[1, 2]}], Automatic, {1, 0}]}, 
+        "GraphicsLabel",
+        StripOnInput->False]}, 
+      StyleBox[{
+        {Thickness[Tiny], 
+         LineBox[{{0.5487982520029133, 0.}, 
+           Offset[{-1.102182119232618*^-15, -6.}, {0.5487982520029133, 0.}]}],
+          LineBox[{{9.451201747997086, 0.}, 
+           Offset[{-1.102182119232618*^-15, -6.}, {9.451201747997086, 
+            0.}]}], {{}, {}, {}, {}, {}, {}, {}, {}, {}, {
+           LineBox[{{1.4512017479970867`, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {1.4512017479970867`, 
+              0.}]}], LineBox[{{1.5487982520029133`, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {1.5487982520029133`, 
+              0.}]}], LineBox[{{2.4512017479970867`, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {2.4512017479970867`, 
+              0.}]}], LineBox[{{2.5487982520029133`, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {2.5487982520029133`, 
+              0.}]}], 
+           LineBox[{{3.4512017479970867`, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {3.4512017479970867`, 
+              0.}]}], LineBox[{{3.5487982520029133`, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {3.5487982520029133`, 
+              0.}]}], LineBox[{{4.451201747997087, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {4.451201747997087, 
+              0.}]}], LineBox[{{4.548798252002913, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {4.548798252002913, 
+              0.}]}], LineBox[{{5.451201747997087, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {5.451201747997087, 
+              0.}]}], LineBox[{{5.548798252002913, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {5.548798252002913, 
+              0.}]}], LineBox[{{6.451201747997087, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {6.451201747997087, 
+              0.}]}], LineBox[{{6.548798252002913, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {6.548798252002913, 
+              0.}]}], LineBox[{{7.451201747997087, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {7.451201747997087, 
+              0.}]}], LineBox[{{7.548798252002913, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {7.548798252002913, 
+              0.}]}], LineBox[{{8.451201747997086, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {8.451201747997086, 
+              0.}]}], LineBox[{{8.548798252002912, 0.}, 
+             Offset[{-7.347880794884119*^-16, -4.}, {8.548798252002912, 
+              0.}]}]}, {}}}, 
+        StyleBox[
+         {Thickness[Tiny], InsetBox[
+           RotationBox["\<\"Age\"\>",
+            BoxRotation->1.5707963267948966`], Offset[{0, -2}, {1., 0.}], 
+           ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}], InsetBox[
+           RotationBox["\<\"Season\"\>",
+            BoxRotation->1.5707963267948966`], Offset[{0, -2}, {2., 0.}], 
+           ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}], InsetBox[
+           RotationBox["\<\"Childish diseases\"\>",
+            BoxRotation->1.5707963267948966`], Offset[{0, -2}, {3., 0.}], 
+           ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}], InsetBox[
+           RotationBox["\<\"Accident or Serious Trauma\"\>",
+            BoxRotation->1.5707963267948966`], Offset[{0, -2}, {4., 0.}], 
+           ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}], InsetBox[
+           RotationBox["\<\"Surgical intervention\"\>",
+            BoxRotation->1.5707963267948966`], Offset[{0, -2}, {5., 0.}], 
+           ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}], InsetBox[
+           RotationBox["\<\"High fevers in the last year\"\>",
+            BoxRotation->1.5707963267948966`], Offset[{0, -2}, {6., 0.}], 
+           ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}], InsetBox[
+           RotationBox["\<\"Frequency of alcohol consumption\"\>",
+            BoxRotation->1.5707963267948966`], Offset[{0, -2}, {7., 0.}], 
+           ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}], InsetBox[
+           RotationBox["\<\"Smoking habit\"\>",
+            BoxRotation->1.5707963267948966`], 
+           Offset[{0, -2}, {7.999999999999999, 0.}], 
+           ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}], InsetBox[
+           RotationBox["\<\"Number of hours spent sitting per day\"\>",
+            BoxRotation->1.5707963267948966`], Offset[{0, -2}, {9., 0.}], 
+           ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}]}, 
+         "GraphicsLabel",
+         StripOnInput->False]}, "GraphicsTicks",
+       StripOnInput->False]},
+     Antialiasing->False], "GraphicsAxes",
+    StripOnInput->False]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, True},
+  AxesLabel->{
+    FormBox["\"Fertility Attributes\"", TraditionalForm], 
+    FormBox["\"Mutual Information\"", TraditionalForm]},
+  AxesOrigin->{0.3707501820830299, 0.},
+  CoordinatesToolOptions:>{"DisplayFunction" -> ({
+      Identity[
+       Part[#, 1]], 
+      Identity[
+       Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+      Identity[
+       Part[#, 1]], 
+      Identity[
+       Part[#, 2]]}& )},
+  DisplayFunction->Identity,
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  PlotRange->{{All, All}, {All, All}},
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{None, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.8293430455153227`*^9, 3.82934312446451*^9, 3.829653773625856*^9, {
+   3.8296546338368893`*^9, 3.82965467374804*^9}, {3.829654768324174*^9, 
+   3.829654783634634*^9}},
+ CellLabel->
+  "Out[342]=",ExpressionUUID->"77cd2669-f87d-4dbd-92e5-5a45e6600815"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.829342813898222*^9, 
+  3.8293428191783457`*^9}},ExpressionUUID->"c330a791-e2b1-4b1f-bac4-\
+549d8014a67c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+Calculating Mutual Information Between Age and Number of hours spent sitting \
+per day\
+\>", "Section",
+ CellChangeTimes->{{3.829653345357046*^9, 
+  3.8296533911542892`*^9}},ExpressionUUID->"f11747b2-4298-4172-8a04-\
+27d6d74c61e0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"HAgeSit", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"fertility", "[", 
+     RowBox[{"[", 
+      RowBox[{
+       RowBox[{"2", ";;"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"2", ",", "9"}], "}"}]}], "]"}], "]"}], "//", "H"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"AgeSitI", " ", "=", " ", 
+   RowBox[{"SitHX", "+", "AgeHX", " ", "-", "HAgeSit"}]}], 
+  " "}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.829653345357046*^9, 3.829653398659663*^9}, {
+   3.829653507924704*^9, 3.829653707891519*^9}, 3.829653797151311*^9, {
+   3.829654227075951*^9, 3.829654269043523*^9}, {3.829654313557369*^9, 
+   3.829654336790277*^9}, {3.829654374661745*^9, 3.829654376058062*^9}},
+ CellLabel->
+  "In[334]:=",ExpressionUUID->"619ce4ad-d3d4-4de9-935e-f6475a711362"],
+
+Cell[BoxData["0.8360039347116004`"], "Output",
+ CellChangeTimes->{
+  3.829653708202075*^9, 3.829653775862788*^9, {3.829654260164196*^9, 
+   3.829654270100136*^9}, 3.829654337117038*^9, 3.829654376360341*^9},
+ CellLabel->
+  "Out[335]=",ExpressionUUID->"ced0cbe6-a920-4462-8ecd-73f18d6eaa38"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8293430285693693`*^9, 
+  3.8293430359165583`*^9}},ExpressionUUID->"67f7ef43-510a-4b66-9418-\
+59af5f0465ff"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.829654571469585*^9, 
+  3.829654594146709*^9}},ExpressionUUID->"718d252c-8c71-44a0-81e7-\
+10ce41c1a860"]
+}, Open  ]]
+},
+WindowSize->{808, 694},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"1a6ba9d0-570b-4899-90c7-55407e47eefb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 285, 8, 30, "Input",ExpressionUUID->"0c550168-dc4c-4bc3-ac5d-358ba46269d2"],
+Cell[846, 30, 1178, 32, 115, "Input",ExpressionUUID->"9eb26b1c-e779-4d8b-a576-fff67c534132"],
+Cell[CellGroupData[{
+Cell[2049, 66, 234, 4, 67, "Section",ExpressionUUID->"f01123b6-aff2-4b61-a3f7-461fae720229"],
+Cell[CellGroupData[{
+Cell[2308, 74, 1068, 33, 94, "Input",ExpressionUUID->"e7eb6aee-a404-463c-8da6-980370987291"],
+Cell[3379, 109, 296, 5, 34, "Output",ExpressionUUID->"128ddeef-4cb0-4234-90b2-99dfc23456ea"]
+}, Open  ]],
+Cell[3690, 117, 229, 4, 30, "Input",ExpressionUUID->"8bb6b182-8efc-47c5-b379-97806d6fdb8f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3956, 126, 287, 4, 67, "Section",ExpressionUUID->"63946951-edcb-4d3b-8693-411dd371b236"],
+Cell[CellGroupData[{
+Cell[4268, 134, 902, 27, 94, "Input",ExpressionUUID->"87fad39a-ed43-4240-b61a-48466941e1a3"],
+Cell[5173, 163, 195, 3, 34, "Output",ExpressionUUID->"d1d05bc0-7fd6-4f26-b6f3-0180d0780f16"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5417, 172, 206, 6, 105, "Section",ExpressionUUID->"8b774f1e-b120-4341-9735-ff2f7f17da30"],
+Cell[CellGroupData[{
+Cell[5648, 182, 795, 23, 73, "Input",ExpressionUUID->"6e4ffe1d-c893-48f7-a54a-2d2c77761d7a"],
+Cell[6446, 207, 195, 3, 34, "Output",ExpressionUUID->"ec5745b0-8035-457e-8777-eb7f0af252ce"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6690, 216, 215, 6, 105, "Section",ExpressionUUID->"2bbdf3b6-4bb9-4530-92da-f23a3213f3bd"],
+Cell[CellGroupData[{
+Cell[6930, 226, 802, 24, 73, "Input",ExpressionUUID->"3174208d-0187-4b8e-aa5b-47f21df7203e"],
+Cell[7735, 252, 224, 4, 34, "Output",ExpressionUUID->"dd5a873a-4f11-43cd-8f32-a4a9ad24d873"]
+}, Open  ]],
+Cell[7974, 259, 152, 3, 30, "Input",ExpressionUUID->"97b5d6cd-0d12-49b6-9310-3bd8f887470c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8163, 267, 201, 3, 67, "Section",ExpressionUUID->"9ce238b2-2f61-4b35-91d2-586abbdd1f96"],
+Cell[CellGroupData[{
+Cell[8389, 274, 790, 23, 73, "Input",ExpressionUUID->"8317a867-544f-4989-bf53-a2e055c13c49"],
+Cell[9182, 299, 200, 3, 34, "Output",ExpressionUUID->"da496a0c-9197-4c16-a3e5-04dd550a29da"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9431, 308, 217, 6, 105, "Section",ExpressionUUID->"9f3d6b79-9b6e-414f-89f2-ef4c0c3ea0fd"],
+Cell[CellGroupData[{
+Cell[9673, 318, 782, 23, 73, "Input",ExpressionUUID->"de923efe-1184-4a64-89fd-db9adbd53a79"],
+Cell[10458, 343, 197, 3, 34, "Output",ExpressionUUID->"69a2d204-eaa9-490b-ac20-71f5e4a3a4e9"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10704, 352, 221, 6, 143, "Section",ExpressionUUID->"2e81cc76-b0d4-458f-8098-19e92ade4e08"],
+Cell[CellGroupData[{
+Cell[10950, 362, 790, 23, 73, "Input",ExpressionUUID->"71020f17-b35e-4b82-a931-65209cc82d32"],
+Cell[11743, 387, 172, 3, 34, "Output",ExpressionUUID->"7a8834aa-01e8-428c-93b7-fe151160cdb1"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11964, 396, 202, 6, 105, "Section",ExpressionUUID->"b4dc22fd-e7bb-4169-a9f1-b154d0659bfe"],
+Cell[12169, 404, 152, 3, 30, "Input",ExpressionUUID->"28f4e867-1b9f-4e9a-b0fe-2d94cf2819f3"],
+Cell[CellGroupData[{
+Cell[12346, 411, 792, 23, 73, "Input",ExpressionUUID->"a03d5876-9cbb-4bf8-88da-535516749046"],
+Cell[13141, 436, 200, 3, 34, "Output",ExpressionUUID->"319b71af-6b3e-4d41-b89d-bbee69cbdd64"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13390, 445, 225, 5, 105, "Section",ExpressionUUID->"b1cca120-f711-44c2-a36b-fecb2fbb0b8a"],
+Cell[CellGroupData[{
+Cell[13640, 454, 770, 23, 73, "Input",ExpressionUUID->"7c1d52f1-4a77-4184-9706-4d9f08622bc5"],
+Cell[14413, 479, 172, 3, 34, "Output",ExpressionUUID->"c2e42b44-026f-49d8-a2bf-257a018a3b02"]
+}, Open  ]],
+Cell[14600, 485, 152, 3, 30, InheritFromParent,ExpressionUUID->"37d5bd94-dc09-4a59-a745-27bc7c2ba6d8"],
+Cell[CellGroupData[{
+Cell[14777, 492, 1588, 37, 157, "Input",ExpressionUUID->"3fde5669-5a42-4b32-877a-687e973882e7"],
+Cell[16368, 531, 15074, 352, 381, "Output",ExpressionUUID->"77cd2669-f87d-4dbd-92e5-5a45e6600815"]
+}, Open  ]],
+Cell[31457, 886, 154, 3, 30, "Input",ExpressionUUID->"c330a791-e2b1-4b1f-bac4-549d8014a67c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31648, 894, 242, 7, 143, "Section",ExpressionUUID->"f11747b2-4298-4172-8a04-27d6d74c61e0"],
+Cell[CellGroupData[{
+Cell[31915, 905, 815, 20, 73, "Input",ExpressionUUID->"619ce4ad-d3d4-4de9-935e-f6475a711362"],
+Cell[32733, 927, 290, 5, 34, "Output",ExpressionUUID->"ced0cbe6-a920-4462-8ecd-73f18d6eaa38"]
+}, Open  ]],
+Cell[33038, 935, 156, 3, 30, "Input",ExpressionUUID->"67f7ef43-510a-4b66-9418-59af5f0465ff"],
+Cell[33197, 940, 152, 3, 30, "Input",ExpressionUUID->"718d252c-8c71-44a0-81e7-10ce41c1a860"]
+}, Open  ]]
+}
+]
+*)
+
